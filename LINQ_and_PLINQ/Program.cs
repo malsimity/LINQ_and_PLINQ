@@ -26,14 +26,14 @@ namespace LINQ_and_PLINQ
             Console.WriteLine("Выборка чётных чисел");
             sw.Restart();
             string[] result = arr.Where(i =>
-                Convert.ToInt32(i.Last().ToString()) % 2 == 0).ToArray();
+                Convert.ToInt32(i.Last().ToString()) % 2 == 0).OrderBy(i => i).ToArray();
             sw.Stop();
             for (int i = 0; i < Math.Min(10, result.Length); i++)
                 Console.WriteLine(result[i]);
             Console.WriteLine("Время выполнения LINQ - " + sw.ElapsedMilliseconds + "мс");
             sw.Restart();
             result = arr.AsParallel().Where(i =>
-                Convert.ToInt32(i.Last().ToString()) % 2 == 0).ToArray();
+                Convert.ToInt32(i.Last().ToString()) % 2 == 0).OrderBy(i => i).ToArray();
             sw.Stop();
             Console.WriteLine("Время выполнения PLINQ - " + sw.ElapsedMilliseconds + "мс\n");
 
@@ -42,14 +42,14 @@ namespace LINQ_and_PLINQ
             Console.WriteLine("Выборка нечётных чисел");
             sw.Restart();
             result = arr.AsParallel().Where(i =>
-                Convert.ToInt32(i.Last().ToString()) % 2 == 1).ToArray();
+                Convert.ToInt32(i.Last().ToString()) % 2 == 1).OrderBy(i => i).ToArray();
             sw.Stop();
             for (int i = 0; i < Math.Min(10, result.Length); i++)
                 Console.WriteLine(result[i]);
             Console.WriteLine("Время выполнения LINQ - " + sw.ElapsedMilliseconds + "мс");
             sw.Restart();
             result = arr.AsParallel().Where(i =>
-                 Convert.ToInt32(i.Last().ToString()) % 2 == 1).ToArray();
+                 Convert.ToInt32(i.Last().ToString()) % 2 == 1).OrderBy(i => i).ToArray();
             sw.Stop();
             Console.WriteLine("Время выполнения PLINQ - " + sw.ElapsedMilliseconds + "мс\n");
 
@@ -64,7 +64,7 @@ namespace LINQ_and_PLINQ
                 int lastElsement = Convert.ToInt32(i[i.Length - 2].ToString());
                 int firstElsement = Convert.ToInt32(i.First().ToString());
                 return lastElsement + firstElsement == 6;
-            }).ToArray();
+            }).OrderBy(i => i).ToArray();
             sw.Stop();
             for (int i = 0; i < Math.Min(10, result.Length); i++)
                 Console.WriteLine(result[i]);
@@ -77,7 +77,7 @@ namespace LINQ_and_PLINQ
                 int lastElsement = Convert.ToInt32(i[i.Length - 2].ToString());
                 int firstElsement = Convert.ToInt32(i.First().ToString());
                 return lastElsement + firstElsement == 6;
-            }).ToArray();
+            }).OrderBy(i => i).ToArray();
             sw.Stop();
             Console.WriteLine("Время выполнения PLINQ - " + sw.ElapsedMilliseconds + "мс\n");
 
@@ -86,14 +86,14 @@ namespace LINQ_and_PLINQ
             Console.WriteLine("Выборка чисел, сумма всех чисел равна 13");
             sw.Restart();
             result = arr.Where(i =>
-                i.Sum(x => Convert.ToInt32(x.ToString())) == 13).ToArray();
+                i.Sum(x => Convert.ToInt32(x.ToString())) == 13).OrderBy(i => i).ToArray();
             sw.Stop();
             for (int i = 0; i < Math.Min(10, result.Length); i++)
                 Console.WriteLine(result[i]);
             Console.WriteLine("Время выполнения LINQ - " + sw.ElapsedMilliseconds + "мс");
             sw.Restart();
             result = arr.AsParallel().Where(i =>
-                i.Sum(x => Convert.ToInt32(x.ToString())) == 13).ToArray();
+                i.Sum(x => Convert.ToInt32(x.ToString())) == 13).OrderBy(i => i).ToArray();
             sw.Stop();
             Console.WriteLine("Время выполнения PLINQ - " + sw.ElapsedMilliseconds + "мс\n");
             Console.ReadKey();
