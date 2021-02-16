@@ -13,7 +13,7 @@ namespace LINQ_and_PLINQ
             Console.WriteLine();
             Random rand = new Random();
             string[] arr = Enumerable.Range(0, N).Select(i =>
-                Convert.ToString(rand.Next(0, 1000000))).ToArray();
+                Convert.ToString(rand.Next(1, 1000000))).ToArray();
             Stopwatch sw = new Stopwatch();
 
 
@@ -41,7 +41,7 @@ namespace LINQ_and_PLINQ
             //Выборка нечётных чисел
             Console.WriteLine("Выборка нечётных чисел");
             sw.Restart();
-            result = arr.AsParallel().Where(i =>
+            result = arr.Where(i =>
                 Convert.ToInt32(i.Last().ToString()) % 2 == 1).OrderBy(i => i).ToArray();
             sw.Stop();
             for (int i = 0; i < Math.Min(10, result.Length); i++)
